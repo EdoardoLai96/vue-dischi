@@ -33,8 +33,5 @@ background-color: $primaryColor;
 background-color: $secondaryColor;
 }
 
-.ms_min-w-{
-    min-width: 200px;
-}
 
 </style>
