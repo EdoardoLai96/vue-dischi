@@ -21,9 +21,6 @@ props: {
 
 <style scoped lang="scss">
 @import "../../assets/style/variables.scss";
-main{
-  height: 100%;
-}
 
 /* MY STYLES  */
 .ms_bg_primary{
