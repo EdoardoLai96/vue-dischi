@@ -18,7 +18,8 @@ export default {
 name: "myMain",
 data(){
   return{
-    discCollection : []
+    discCollection : [],
+    discGenres: [],
   }
 },
 components:{
@@ -30,7 +31,18 @@ methods:{
   .then((response) => {
     // handle success
     this.discCollection = response.data.response;
-    console.log(this.discCollection)
+    console.log(response.data.response)
+
+
+    response.data.response.forEach(element => {
+      if(!this.discGenres.includes(element.genre)){
+        this.discGenres.push(element.genre)
+      }
+    });
+
+    console.log(this.discGenres)
+
+    this.filterGenres();
   })
   .catch(function (error) {
     // handle error
@@ -39,6 +51,9 @@ methods:{
   .then(function () {
     // always executed
   });
+  },
+  filterGenres(){
+    this.$emit('exportGenres', this.discGenres)
   }
 },
 mounted(){

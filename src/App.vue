@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-   <myHeader/>
-   <myMain/>
+   <myHeader :discGenres="discGenres"/>
+   <myMain @exportGenres='transferArray'/>
   </div>
 </template>
 
@@ -15,7 +15,22 @@ export default {
     myHeader,
     myMain
 
-  }
+  },
+  data(){
+    return{
+      discGenres : [],
+    }
+  },
+  mounted(){
+    this.transferArray()
+  },
+  methods:{
+    transferArray(movedArray){
+      this.discGenres = movedArray
+    }
+
+  },
+
 }
 </script>
 
