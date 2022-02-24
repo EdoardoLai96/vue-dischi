@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-   <myHeader :discGenres="discGenres"/>
-   <myMain @exportGenres='transferArray'/>
+   <myHeader @selectedGenre="transferGenre" :discGenres="discGenres"/>
+   <myMain @exportGenres='transferArray' :selectedGenre="selectedGenre"/>
   </div>
 </template>
 
@@ -19,14 +19,19 @@ export default {
   data(){
     return{
       discGenres : [],
+      selectedGenre : "",
     }
   },
   mounted(){
-    this.transferArray()
+    this.transferArray(),
+    this.transferGenre()
   },
   methods:{
     transferArray(movedArray){
       this.discGenres = movedArray
+    },
+    transferGenre(movedGenre){
+      this.selectedGenre = movedGenre
     }
 
   },

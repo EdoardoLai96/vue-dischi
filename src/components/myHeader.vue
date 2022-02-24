@@ -3,8 +3,8 @@
       <div class="logo_box">
           <img src="../assets/img/spotify-1.svg" alt="">
       </div>
-      <select class="form-select ms_w_min ms_h_min" aria-label="Default select example">
-        <option selected>Select Genre</option>
+      <select id="tipo_di_genere" @change="selectGenre($event)" class="form-select ms_w_min ms_h_min" aria-label="Default select example">
+        <option selected>Seleziona un genere</option>
         <option v-for="(genre, index) in discGenres" :key="index" :value="genre">{{genre}}</option>
      </select>
   </div>
@@ -13,14 +13,23 @@
 <script>
 export default {
 name: "myHeader",
+data(){
+    return{
+        selectedGenre : null,
+    }
+},
 props:{
     "discGenres" : Array,
 },
 methods:{
-    selectGenere(){
-        console.log
+    selectGenre(event){
+        this.selectedGenre = event.target.value
+        console.log(this.selectedGenre)
+        this.$emit("selectedGenre", this.selectedGenre)
     }
-}
+},
+
+
 }
 </script>
 

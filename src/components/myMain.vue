@@ -22,6 +22,17 @@ data(){
     discGenres: [],
   }
 },
+props:{
+  selectedGenre: String
+},
+computed:{
+// filteredByGenre(){
+// this.discCollection.filter(item => {
+// return item.genre == "Pop"
+// })
+
+// }
+},
 components:{
   myCard
 },
@@ -48,13 +59,15 @@ methods:{
     // handle error
     console.log(error);
   })
-  .then(function () {
-    // always executed
+  .then(()=> {
+    //handle something
   });
   },
   filterGenres(){
     this.$emit('exportGenres', this.discGenres)
-  }
+  },
+
+
 },
 mounted(){
   this.getDiscs()
