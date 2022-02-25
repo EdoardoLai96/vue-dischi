@@ -22,10 +22,6 @@ export default {
       selectedGenre : "",
     }
   },
-  mounted(){
-    this.transferArray(),
-    this.transferGenre()
-  },
   methods:{
     transferArray(movedArray){
       this.discGenres = movedArray
