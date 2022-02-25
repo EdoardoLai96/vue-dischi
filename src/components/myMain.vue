@@ -1,8 +1,8 @@
 <template>
 <main class="ms_bg_primary">
-<div class="container py-5">
+<div class="container py-5 d-flex justify-content-center">
     <div class="row gx-3 gy-3 flex-wrap h-100 flex-center disc_box">
-      <myCard :disc="disc"  v-for="(disc, index) in discCollection" :key="index" />
+      <myCard :disc="disc"  v-for="(disc, index) in filteredByGenre" :key="index" />
     </div>
 </div>
 </main>
@@ -26,12 +26,17 @@ props:{
   selectedGenre: String
 },
 computed:{
-// filteredByGenre(){
-// this.discCollection.filter(item => {
-// return item.genre == "Pop"
-// })
+filteredByGenre(){
+  if(this.selectedGenre == ""){
+    return this.discCollection
+  }else{
+    return this.discCollection.filter(item => {
+      return item.genre == this.selectedGenre;
+    })
 
-// }
+  }
+
+}
 },
 components:{
   myCard
@@ -45,7 +50,7 @@ methods:{
     console.log(response.data.response)
 
 
-    response.data.response.forEach(element => {
+    this.discCollection.forEach(element => {
       if(!this.discGenres.includes(element.genre)){
         this.discGenres.push(element.genre)
       }
@@ -55,13 +60,6 @@ methods:{
 
     this.filterGenres();
   })
-  .catch(function (error) {
-    // handle error
-    console.log(error);
-  })
-  .then(()=> {
-    //handle something
-  });
   },
   filterGenres(){
     this.$emit('exportGenres', this.discGenres)
